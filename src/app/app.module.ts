@@ -9,10 +9,13 @@ import {FormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ToolbarModule} from "primeng/toolbar";
 import {StyleClassModule} from "primeng/styleclass";
+import {DashboardComponent} from "./components/dashboard/dashboard.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

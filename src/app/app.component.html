@@ -1,14 +1,7 @@
-<div class="app">
-  <div class="app__menu menu">
-    <p-toolbar>
-      <div class="p-toolbar-group-left">
-        <div class="menu__menu-wrapper menu-wrapper">
-          <div *ngFor="let item of menuItems" class="menu-wrapper__item">
-            <p-button [label]="item.label" (onClick)="routeToPage(item.url)"></p-button>
-          </div>
-        </div>
-      </div>
-    </p-toolbar>
+<p-toolbar>
+  <div class="p-toolbar-group-left"></div>
+  <div class="p-toolbar-group-right">
+    <p-button label="Logout"></p-button>
   </div>
-  <div class="app__main-view"></div>
-</div>
+</p-toolbar>
+<app-dashboard></app-dashboard>
