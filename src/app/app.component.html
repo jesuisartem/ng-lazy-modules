@@ -1,14 +1,14 @@
 <div class="app">
-  <div class="app__side-menu">
-    <p-button
-        (onClick)="isSidebarVisible$.next(true)"
-    >
-    <i class="pi pi-arrow-right"></i>
-    </p-button>
-    <p-sidebar
-        [visible]="(isSidebarVisible$ | async) ?? false"
-        (visibleChange)="isSidebarVisible$.next($event)"
-    ></p-sidebar>
+  <div class="app__menu menu">
+    <p-toolbar>
+      <div class="p-toolbar-group-left">
+        <div class="menu__menu-wrapper menu-wrapper">
+          <div *ngFor="let item of menuItems" class="menu-wrapper__item">
+            <p-button [label]="item.label" (onClick)="routeToPage(item.url)"></p-button>
+          </div>
+        </div>
+      </div>
+    </p-toolbar>
   </div>
   <div class="app__main-view"></div>
 </div>

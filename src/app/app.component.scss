@@ -2,13 +2,20 @@
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
 }
 
-.app__side-menu {
+.app__menu {
   height: 100%;
 }
 
 .app__main-view {
   width: 100%;
   height: 100%;
+}
+
+.menu__menu-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 }
