@@ -3,7 +3,7 @@ import {NavigationEnd, Router} from "@angular/router";
 import {AppService} from "../../../../app.service";
 import {CustomMenuItem} from "../../../../const/interfaces/custom-menu-item.interface";
 import {PageURLS} from "../../../../const/enums/page-urls-enum";
-import {filter, map} from "rxjs";
+import {filter, map, tap} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
@@ -14,13 +14,13 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 export class MainComponent {
   private router = inject(Router);
   public appService = inject(AppService);
-  private destroyRef = inject(DestroyRef);
 
   public menuItems: CustomMenuItem[] = [];
 
   public ngOnInit(): void {
     this.fillMenuBar();
-    this.setMenuItemFromRoute();
+
+    this.setSelectedMenuItemFromRoute();
   }
 
   private fillMenuBar(): void {
@@ -54,17 +54,9 @@ export class MainComponent {
     this.router.navigate([item.url]);
   }
 
-  public setMenuItemFromRoute(): void {
-    this.router.events
-      .pipe(
-        filter((e): e is NavigationEnd => e instanceof NavigationEnd),
-        map(event => event.url.substring(1)),
-        takeUntilDestroyed(this.destroyRef),
-      )
-      .subscribe(path => {
-        if (Object.values<string>(PageURLS).includes(path) && this.appService.getSelectedMenuItem() === null) {
-          this.appService.setSelectedItem(this.menuItems.find(menuItem => menuItem.url === path) ?? null);
-        }
-      });
+  private setSelectedMenuItemFromRoute(): void {
+    if (Object.values<string>(PageURLS).includes(this.router.url.substring(1)) && this.appService.getSelectedMenuItem() === null) {
+      this.appService.setSelectedItem(this.menuItems.find(menuItem => menuItem.url === this.router.url.substring(1)) ?? null);
+    }
   }
 }

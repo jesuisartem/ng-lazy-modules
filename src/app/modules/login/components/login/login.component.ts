@@ -44,7 +44,7 @@ export class LoginComponent {
       password: this.authFormGroup.controls.password.value,
     };
     if (this.authService.isCorrectAuthData(authData)) {
-      this.authService.setAuthData(authData);
+      this.authService.setAuthData(this.authService.getUserDataByLogin(authData.login));
       this.router.navigate(['']);
     } else {
       this.authFormGroup.setErrors({'authError': true});

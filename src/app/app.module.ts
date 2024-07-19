@@ -10,11 +10,13 @@ import {StyleClassModule} from "primeng/styleclass";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {ToolbarModule} from "primeng/toolbar";
 import {MainModule} from "./modules/main/main.module";
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
