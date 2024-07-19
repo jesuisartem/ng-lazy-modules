@@ -3,31 +3,33 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {MenubarModule} from "primeng/menubar";
 import {Button} from "primeng/button";
 import {FormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {ToolbarModule} from "primeng/toolbar";
 import {StyleClassModule} from "primeng/styleclass";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
+import {ToolbarModule} from "primeng/toolbar";
+import {MainModule} from "./modules/main/main.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    DashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MenubarModule,
     Button,
     FormsModule,
     BrowserAnimationsModule,
-    ToolbarModule,
     StyleClassModule,
+    ToolbarModule,
+    MainModule,
   ],
   providers: [],
+  exports: [
+    DashboardComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
