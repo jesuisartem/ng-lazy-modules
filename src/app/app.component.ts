@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MenuItem } from "primeng/api";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'testmultimodule';
+  public menuItems: MenuItem[] = [];
+
+  public isSidebarVisible$ = new BehaviorSubject<boolean>(false);
 }
