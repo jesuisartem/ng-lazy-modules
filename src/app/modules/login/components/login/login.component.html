@@ -1,0 +1,41 @@
+<div class="login-form-wrapper">
+  <div
+    class="loading-overlay"
+    *ngIf="(loadingService.isLoading$() | async)"
+  >
+    <div class="spinner">
+      <p-progressSpinner
+        styleClass="w-4rem h-4rem"
+        strokeWidth="8"
+        animationDuration=".5s"
+      ></p-progressSpinner>
+    </div>
+  </div>
+  <div [formGroup]="authFormGroup" class="login-form">
+    <div class="login-form__login">
+      <p-floatLabel>
+        <input
+          id="login"
+          pInputText formControlName="login"
+          [class.ng-dirty]="authFormGroup.getError('authError')"
+          [class.ng-invalid]="authFormGroup.getError('authError')"
+        >
+        <label for="login">Логин</label>
+      </p-floatLabel>
+    </div>
+    <div class="login-form__password">
+      <p-floatLabel>
+        <input
+          id="password"
+          pInputText formControlName="password"
+          [class.ng-dirty]="authFormGroup.getError('authError')"
+          [class.ng-invalid]="authFormGroup.getError('authError')"
+        >
+        <label for="password">Пароль</label>
+      </p-floatLabel>
+    </div>
+    <div class="login-form__submit">
+      <p-button label="Войти" (onClick)="login()"></p-button>
+    </div>
+  </div>
+</div>
