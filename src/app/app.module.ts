@@ -7,6 +7,7 @@ import {MenubarModule} from "primeng/menubar";
 import {Button} from "primeng/button";
 import {SidebarModule} from "primeng/sidebar";
 import {FormsModule} from "@angular/forms";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {FormsModule} from "@angular/forms";
     Button,
     SidebarModule,
     FormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

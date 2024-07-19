@@ -1,9 +1,14 @@
 <div class="app">
   <div class="app__side-menu">
-    <p-button (onClick)="isSidebarVisible$.next(true)">
-      <i class="pi pi-chevron-down"></i>
+    <p-button
+        (onClick)="isSidebarVisible$.next(true)"
+    >
+    <i class="pi pi-arrow-right"></i>
     </p-button>
-    <p-sidebar (visibleChange)="isSidebarVisible$.next($event)"></p-sidebar>
+    <p-sidebar
+        [visible]="(isSidebarVisible$ | async) ?? false"
+        (visibleChange)="isSidebarVisible$.next($event)"
+    ></p-sidebar>
   </div>
   <div class="app__main-view"></div>
 </div>
