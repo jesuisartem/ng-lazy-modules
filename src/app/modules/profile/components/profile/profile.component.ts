@@ -1,6 +1,5 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   DestroyRef,
@@ -13,6 +12,8 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {filter, finalize, first} from "rxjs";
 import {Profile, ProfileFormModel} from "../../const/profile.interface";
 import {LoadingService} from "../../../loading/loading.service";
+import {MessageService} from "primeng/api";
+import {ERROR_MESSAGE, SUCCESS_MESSAGE} from "../../const/MESSAGES";
 
 @Component({
   selector: 'app-profile',
@@ -31,6 +32,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   private profileService = inject(ProfileService);
   private loadingService = inject(LoadingService);
   private cdr = inject(ChangeDetectorRef);
+  private messageService = inject(MessageService);
   private destroyRef = inject(DestroyRef);
 
   public ngOnInit(): void {
@@ -43,12 +45,23 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   }
 
   public saveChanges(): void {
-    this.profileService.saveProfileData()
+    const formData: Profile = {
+      first_name: this.profileForm.controls.first_name.value,
+      last_name: this.profileForm.controls.last_name.value,
+      email: this.profileForm.controls.email.value,
+      url: this.profileForm.controls.url.value,
+      phone_number: this.profileForm.controls.phone_number.value,
+    };
+    this.loadingService.setLoadingStatus(true)
+    this.profileService.saveProfileData(formData)
       .pipe(
-        first(),
+        finalize(() => this.loadingService.setLoadingStatus(false)),
         takeUntilDestroyed(this.destroyRef),
       )
-      .subscribe()
+      .subscribe({
+        next: () => this.messageService.add(SUCCESS_MESSAGE),
+        error: err => this.messageService.add(ERROR_MESSAGE),
+      })
   }
 
   private getProfileData(): void {

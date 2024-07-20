@@ -7,6 +7,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
 import {Button} from "primeng/button";
 import { PhoneInputDirective } from './directives/phone-input.directive';
+import {MessageService} from "primeng/api";
+import {ToastModule} from "primeng/toast";
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { PhoneInputDirective } from './directives/phone-input.directive';
     ReactiveFormsModule,
     InputTextModule,
     Button,
-  ]
+    ToastModule,
+  ],
+  providers: [MessageService],
 })
 export class ProfileModule { }
