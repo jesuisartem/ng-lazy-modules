@@ -10,11 +10,14 @@ import {StyleClassModule} from "primeng/styleclass";
 import {ToolbarModule} from "primeng/toolbar";
 import {MainModule} from "./modules/main/main.module";
 import { HeaderComponent } from './header/header.component';
+import {ProgressSpinnerModule} from "primeng/progressspinner";
+import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    LoadingOverlayComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,7 @@ import { HeaderComponent } from './header/header.component';
     StyleClassModule,
     ToolbarModule,
     MainModule,
+    ProgressSpinnerModule,
   ],
   providers: [],
   exports: [],
