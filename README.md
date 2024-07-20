@@ -1,27 +1,21 @@
-# Testmultimodule
+Angular
+Тестовая задача: разработка элементов интерфейса.
+1.	Навигация, главное меню.
+Вывести главное меню, состоящее из пунктов: Home, Inventory, Reports, Billing, Profile. С каждого пункта меню должен быть переход в соответствующий раздел, вынесенный в отдельный модуль. Модули должны подгружаться динамически. Внутри каждого раздела - страница с заголовком. Меню должно реагировать на наведение, выбранный пункт меню - выделяться.
+2.	Header.
+Вывести общий для всех страниц header. В нем разместить ссылку Logout (без функционала) и информацию о пользователе:
+3.	Профиль.
+Добавить страницу для редактирования профиля пользователя. На странице должна быть форма с полями:
+4.	Обратная связь при обновлении профиля.
+1)	Оформить вывод валидационных ошибок формы как всплывающие справа от полей ввода "облачка" красного цвета;
+2)	При успешном обновлении профиля показывать сообщение об этом в Header;
+3)	Эмулировать для определенного набора данных (например, First Name длиной в одинсимвол) возврат ошибки от API. Отобразить её в той же области, что и сообщение об успехе обновления профиля;
+4)	Сообщения об успехе скрывать автоматически через 30 секунд. Сообщения об ошибке должны удаляться после клика пользователя на иконку закрытия (крестик, например) этого сообщения.
+5.	Авторизация
+Разделить приложение на два модуля - для неавторизованных пользователей (auth) и пользователей, успешно прошедших авторизацию (app). 
+Запретить неавторизованным пользователям просматривать страницы, относящиеся к модулю app. 
+Добавить форму для логина; эмулировать запросы-ответы к API - как успешные, так и для некорректной пары логин-пароль.
+ При логине выдавать пользователю роль (можно случайную из некоторого набора).
+ Авторизация должна сохраняться при обновлении/закрытии страницы.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.4.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
