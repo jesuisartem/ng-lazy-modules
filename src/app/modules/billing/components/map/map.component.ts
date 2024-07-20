@@ -3,6 +3,9 @@ import Map from 'ol/Map';
 import TileLayer from "ol/layer/Tile";
 import {OSM} from "ol/source";
 import {View} from "ol";
+import VectorLayer from "ol/layer/Vector";
+import {GeoJSON} from "ol/format";
+import VectorSource from "ol/source/Vector";
 
 @Component({
   selector: 'app-map',
@@ -18,6 +21,12 @@ export class MapComponent implements OnInit {
         new TileLayer({
           source: new OSM(),
         }),
+        new VectorLayer({
+          source: new VectorSource({
+            url: 'assets/ru.json',
+            format: new GeoJSON(),
+          })
+        })
       ],
       target: 'map',
       view: new View({
