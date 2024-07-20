@@ -1,18 +1,16 @@
 <div class="app">
   <div class="app__menu menu">
-    <div class="p-toolbar-group-left">
-      <div class="menu__menu-wrapper menu-wrapper">
-        <div *ngFor="let item of menuItems" class="menu-wrapper__item">
-          <p-button
-            [styleClass]="(appService.selectedMenuItem$ | async)?.label === item.label ? 'p-button-primary' : 'p-button-outlined'"
-            [label]="item.label"
-            (onClick)="routeToPage(item)"
-          ></p-button>
-        </div>
-      </div>
+    <div *ngFor="let item of menuItems" class="menu-wrapper__item">
+      <p-button
+        [styleClass]="(appService.selectedMenuItem$ | async)?.label === item.label ? 'p-button-primary' : 'p-button-text'"
+        [label]="item.label"
+        (onClick)="routeToPage(item)"
+      ></p-button>
     </div>
   </div>
-  <router-outlet></router-outlet>
+  <div class="app__main-view">
+    <router-outlet></router-outlet>
+  </div>
 </div>
 
 
