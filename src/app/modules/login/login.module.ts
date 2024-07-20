@@ -8,6 +8,8 @@ import {InputTextModule} from "primeng/inputtext";
 import {FloatLabelModule} from "primeng/floatlabel";
 import {Button} from "primeng/button";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
+import {MessageService} from "primeng/api";
+import {ToastModule} from "primeng/toast";
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import {ProgressSpinnerModule} from "primeng/progressspinner";
     InputTextModule,
     FloatLabelModule,
     Button,
-    ProgressSpinnerModule
-  ]
+    ProgressSpinnerModule,
+    ToastModule
+  ],
+  providers: [MessageService]
 })
 export class LoginModule { }
