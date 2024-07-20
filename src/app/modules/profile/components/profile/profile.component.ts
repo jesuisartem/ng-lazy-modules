@@ -108,7 +108,4 @@ export class ProfileComponent implements OnInit {
         this.profileForm.controls.phone_number.patchValue(modifiedValue, { emitEvent: false });
       });
   };
-
-
-
 }

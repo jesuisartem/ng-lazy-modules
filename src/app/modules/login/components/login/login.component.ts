@@ -6,6 +6,8 @@ import {finalize, timer} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {LoadingService} from "../../../loading/loading.service";
 import {Router} from "@angular/router";
+import {MessageService} from "primeng/api";
+import {ERROR_LOGIN_MESSAGE} from "../../../profile/const/MESSAGES";
 
 interface AuthFormGroupModel {
   login: FormControl<AuthData['login']>;
@@ -21,6 +23,7 @@ export class LoginComponent {
   public loadingService = inject(LoadingService);
   public authService = inject(AuthService);
   private destroyRef = inject(DestroyRef);
+  private messageService = inject(MessageService);
   private router = inject(Router);
 
   public authFormGroup = new FormGroup<AuthFormGroupModel>(<AuthFormGroupModel>{
@@ -48,6 +51,7 @@ export class LoginComponent {
       this.router.navigate(['/home']);
     } else {
       this.authFormGroup.setErrors({'authError': true});
+      this.messageService.add(ERROR_LOGIN_MESSAGE);
     }
   }
 }

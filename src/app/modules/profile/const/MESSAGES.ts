@@ -16,7 +16,16 @@ const ERROR_MESSAGE: Message = {
   sticky: true,
 }
 
+const ERROR_LOGIN_MESSAGE: Message = {
+  summary: 'Ошибка!',
+  detail: 'Неправильные логин или пароль',
+  severity: 'error',
+  key: 'login-error',
+  sticky: true,
+}
+
 export {
   SUCCESS_MESSAGE,
   ERROR_MESSAGE,
+  ERROR_LOGIN_MESSAGE,
 }
