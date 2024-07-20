@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
     first_name: new FormControl('', [Validators.required, Validators.maxLength(255)]),
     last_name: new FormControl('', [Validators.required, Validators.maxLength(255)]),
     email: new FormControl('', [Validators.email]),
-    phone_number: new FormControl('', [Validators.required, Validators.maxLength(12), Validators.pattern("^[0-9+]+$"),]),
+    phone_number: new FormControl('', [Validators.pattern("^[0-9+]+$"), Validators.required, Validators.maxLength(12)]),
     url: new FormControl(''),
   });
 
@@ -24,17 +24,7 @@ export class ProfileComponent implements OnInit {
 
   public ngOnInit(): void {
     this.getProfileData();
-
-    this.profileForm.controls.phone_number
-      .valueChanges
-      .pipe(
-        filter(value => !!value.length && !value.includes('+')),
-        takeUntilDestroyed(this.destroyRef),
-      )
-      .subscribe(value => {
-        const modifiedValue = `+7${value}`
-        this.profileForm.controls.phone_number.patchValue(modifiedValue, { emitEvent: false });
-      })
+    this.setPhonePrefixOnInputChange();
   }
 
   public saveChanges(): void {
@@ -60,5 +50,18 @@ export class ProfileComponent implements OnInit {
       ...profile,
     });
   }
+
+  private setPhonePrefixOnInputChange(): void {
+    this.profileForm.controls.phone_number
+      .valueChanges
+      .pipe(
+        filter(value => !!value.length && !value.includes('+')),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe(value => {
+        const modifiedValue = `+7${value}`
+        this.profileForm.controls.phone_number.patchValue(modifiedValue, { emitEvent: false });
+      });
+  };
 
 }

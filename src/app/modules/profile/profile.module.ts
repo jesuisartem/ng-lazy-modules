@@ -6,10 +6,12 @@ import {FloatLabelModule} from "primeng/floatlabel";
 import {ReactiveFormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
 import {Button} from "primeng/button";
+import { PhoneInputDirective } from './directives/phone-input.directive';
 
 @NgModule({
   declarations: [
-    ProfileComponent
+    ProfileComponent,
+    PhoneInputDirective
   ],
   imports: [
     ProfileRoutingModule,
