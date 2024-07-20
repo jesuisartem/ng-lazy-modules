@@ -1,6 +1,6 @@
 <p-toolbar>
   <div class="p-toolbar-group-left">
-    <div *ngIf="(authService.currentUser$ | async) as user" class="user__data user">
+    <div *ngIf="(mainService.selectedProfile$ | async) as user" class="user__data user">
       <div class="user__firstname">
         Имя: {{user.first_name}}
       </div>
@@ -8,7 +8,7 @@
         Фамилия: {{user.last_name}}
       </div>
       <div class="user__role">
-        Роль: {{user.role}}
+        Сайт: <a [href]="user.url"></a>
       </div>
     </div>
   </div>

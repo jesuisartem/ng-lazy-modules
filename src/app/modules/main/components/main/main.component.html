@@ -3,7 +3,7 @@
     <div *ngFor="let item of menuItems" class="menu-wrapper__item item">
       <p-button
         class="item__btn"
-        [styleClass]="(appService.selectedMenuItem$ | async)?.label === item.label ? 'p-button-primary' : 'p-button-text'"
+        [styleClass]="(mainService.selectedMenuItem$ | async)?.label === item.label ? 'p-button-primary' : 'p-button-text'"
         [label]="item.label"
         (onClick)="routeToPage(item)"
       ></p-button>

@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   DestroyRef,
@@ -9,18 +8,19 @@ import {
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProfileService} from "../../services/profile.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {filter, finalize, first} from "rxjs";
+import {filter, finalize, first, switchMap, tap} from "rxjs";
 import {Profile, ProfileFormModel} from "../../const/profile.interface";
 import {LoadingService} from "../../../loading/loading.service";
 import {MessageService} from "primeng/api";
 import {ERROR_MESSAGE, SUCCESS_MESSAGE} from "../../const/MESSAGES";
+import {MainService} from "../../../main/services/main.service";
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit, AfterViewInit {
+export class ProfileComponent implements OnInit {
   public profileForm = new FormGroup<ProfileFormModel>(<ProfileFormModel>{
     first_name: new FormControl('', [Validators.required, Validators.maxLength(255)]),
     last_name: new FormControl('', [Validators.required, Validators.maxLength(255)]),
@@ -31,17 +31,14 @@ export class ProfileComponent implements OnInit, AfterViewInit {
 
   private profileService = inject(ProfileService);
   private loadingService = inject(LoadingService);
-  private cdr = inject(ChangeDetectorRef);
   private messageService = inject(MessageService);
+  private mainService = inject(MainService);
+  private cdr = inject(ChangeDetectorRef);
   private destroyRef = inject(DestroyRef);
 
   public ngOnInit(): void {
-    this.getProfileData();
     this.setPhonePrefixOnInputChange();
-  }
-
-  public ngAfterViewInit() {
-    this.cdr.markForCheck();
+    this.getProfileData();
   }
 
   public saveChanges(): void {
@@ -60,20 +57,27 @@ export class ProfileComponent implements OnInit, AfterViewInit {
       )
       .subscribe({
         next: () => this.messageService.add(SUCCESS_MESSAGE),
-        error: err => this.messageService.add(ERROR_MESSAGE),
+        error: () => this.messageService.add(ERROR_MESSAGE),
       })
   }
 
   private getProfileData(): void {
     this.loadingService.setLoadingStatus(true);
-    this.cdr.markForCheck();
-    this.profileService.getProfileData()
+    this.mainService.selectedProfile$
       .pipe(
+        switchMap(profile => {
+          if (profile) return this.mainService.selectedProfile$;
+          else return this.profileService.getProfileData()
+        }),
         first(),
         finalize(() => this.loadingService.setLoadingStatus(false)),
         takeUntilDestroyed(this.destroyRef),
       )
-      .subscribe(profile => this.patchForm(profile));
+      .subscribe(profile => {
+        if (!profile) return;
+        this.patchForm(profile);
+        this.cdr.markForCheck()
+      });
   }
 
   private patchForm(profile: Profile): void {
