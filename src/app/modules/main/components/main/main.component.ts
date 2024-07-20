@@ -1,6 +1,6 @@
 import {Component, DestroyRef, inject} from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
-import {AppService} from "../../../../app.service";
+import {AppService} from "../../../../services/app.service";
 import {CustomMenuItem} from "../../../../const/interfaces/custom-menu-item.interface";
 import {PageURLS} from "../../../../const/enums/page-urls-enum";
 import {filter, map, tap} from "rxjs";

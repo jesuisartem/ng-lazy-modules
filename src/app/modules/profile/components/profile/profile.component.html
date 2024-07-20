@@ -1,1 +1,67 @@
-<p>profile works!</p>
+<div class="profile">
+  <div class="profile__header">Профиль пользователя</div>
+  <div [formGroup]="profileForm" class="profile__data profile-data">
+    <div class="profile-data__first-name">
+      <p-floatLabel>
+        <input
+          id="first-name"
+          pInputText
+          formControlName="first_name"
+          maxlength="255"
+          required
+        >
+        <label for="first-name">Имя</label>
+      </p-floatLabel>
+    </div>
+    <div class="profile-data__last-name">
+      <p-floatLabel>
+        <input
+          id="last-name"
+          pInputText
+          formControlName="last_name"
+          maxlength="255"
+          required
+        >
+        <label for="last-name">Фамилия</label>
+      </p-floatLabel>
+    </div>
+    <div class="profile-data__email">
+      <p-floatLabel>
+        <input
+          id="email"
+          pInputText
+          formControlName="email"
+          [readOnly]="true"
+        >
+        <label for="email">Email</label>
+      </p-floatLabel>
+    </div>
+    <div class="profile-data__phone-number">
+      <p-floatLabel>
+        <input
+          id="phone-number"
+          pInputText
+          formControlName="phone_number"
+          maxlength="12"
+        >
+        <label for="phone-number">Номер телефона</label>
+      </p-floatLabel>
+    </div>
+    <div class="profile-data__url">
+      <p-floatLabel>
+        <input
+          id="url"
+          pInputText
+          formControlName="url"
+        >
+        <label for="url">Адрес сайта</label>
+      </p-floatLabel>
+    </div>
+  </div>
+  <div class="profile__submit">
+    <p-button
+      label="Сохранить"
+      (onClick)="saveChanges()"
+    ></p-button>
+  </div>
+</div>

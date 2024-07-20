@@ -1,0 +1,10 @@
+.app-root {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+}
+
+.app-router-outlet {
+  height: 100%;
+}

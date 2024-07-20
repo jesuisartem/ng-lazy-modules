@@ -35,4 +35,9 @@ export class AuthService {
   public getUserDataByLogin(authLogin: AuthData['login']): AuthData | undefined {
     return CORRECT_USERS.find(user => user.login === authLogin);
   }
+
+  public removeAuthData(): void {
+    sessionStorage.removeItem('auth');
+    this.currentUser$.next(null);
+  }
 }

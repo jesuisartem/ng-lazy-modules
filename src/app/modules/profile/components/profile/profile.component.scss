@@ -1,0 +1,16 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.profile__header {
+  font-weight: bold;
+  font-size: 28px;
+}
+
+.profile__data {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}

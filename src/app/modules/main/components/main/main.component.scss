@@ -9,14 +9,22 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  align-items: center;
   box-shadow: 12px 0 15px -4px rgba(31, 73, 125, 0.8);
   padding: 1rem;
-  border-radius: 5%;
+  border-radius: 1%;
+  width: 300px;
 }
 
 .app__main-view {
   width: 100%;
   height: 100%;
   padding: 0 0 0 2rem;
+}
+
+.menu-wrapper__item_selected {
+  background-color: #2d6fb1;
+}
+
+::ng-deep .item__btn button {
+  width: 100%;
 }
