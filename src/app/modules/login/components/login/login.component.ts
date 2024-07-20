@@ -45,7 +45,7 @@ export class LoginComponent {
     };
     if (this.authService.isCorrectAuthData(authData)) {
       this.authService.setAuthData(this.authService.getUserDataByLogin(authData.login));
-      this.router.navigate(['']);
+      this.router.navigate(['/home']);
     } else {
       this.authFormGroup.setErrors({'authError': true});
     }
