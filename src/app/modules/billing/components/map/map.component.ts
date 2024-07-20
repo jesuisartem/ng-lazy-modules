@@ -1,11 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import Map from 'ol/Map';
-import TileLayer from "ol/layer/Tile";
-import {OSM} from "ol/source";
-import {View} from "ol";
-import VectorLayer from "ol/layer/Vector";
-import {GeoJSON} from "ol/format";
-import VectorSource from "ol/source/Vector";
+import {MapService} from "../../services/map.service";
 
 @Component({
   selector: 'app-map',
@@ -15,24 +10,22 @@ import VectorSource from "ol/source/Vector";
 export class MapComponent implements OnInit {
   public map!: Map
 
+  private mapService = inject(MapService);
+
   public ngOnInit(): void {
-    this.map = new Map({
-      layers: [
-        new TileLayer({
-          source: new OSM(),
-        }),
-        new VectorLayer({
-          source: new VectorSource({
-            url: 'assets/ru.json',
-            format: new GeoJSON(),
-          })
-        })
-      ],
-      target: 'map',
-      view: new View({
-        center: [0, 0],
-        zoom: 2,maxZoom: 18,
-      }),
-    });
+    this.initMap();
+    this.getMapClick();
+  }
+
+  private initMap(): void {
+    this.map = this.mapService.createMap();
+  }
+
+  private getMapClick(): any {
+    this.map.on('singleclick', (click) => {
+      const pixel = this.map.getEventPixel(click.originalEvent);
+      const features = this.map.getFeaturesAtPixel(pixel);
+      console.log(features)
+    })
   }
 }
