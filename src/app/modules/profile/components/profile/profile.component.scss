@@ -14,3 +14,17 @@
   flex-direction: column;
   gap: 1.5rem;
 }
+
+.profile-data__first-name,
+.profile-data__last-name,
+.profile-data__email,
+.profile-data__phone-number,
+.profile-data__url {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem
+}
+
+.error-msg {
+  color: red;
+}

@@ -14,6 +14,8 @@ import {LoadingService} from "../../../loading/loading.service";
 import {MessageService} from "primeng/api";
 import {ERROR_MESSAGE, SUCCESS_MESSAGE} from "../../const/MESSAGES";
 import {MainService} from "../../../main/services/main.service";
+import {phoneValidator} from "../../const/phone-validator";
+import {urlValidator} from "../../const/url-validator";
 
 @Component({
   selector: 'app-profile',
@@ -25,8 +27,8 @@ export class ProfileComponent implements OnInit {
     first_name: new FormControl('', [Validators.required, Validators.maxLength(255)]),
     last_name: new FormControl('', [Validators.required, Validators.maxLength(255)]),
     email: new FormControl('', [Validators.email]),
-    phone_number: new FormControl('', [Validators.pattern("^[0-9+]+$"), Validators.required, Validators.maxLength(12)]),
-    url: new FormControl(''),
+    phone_number: new FormControl('', [Validators.pattern("^[0-9+]+$"), Validators.required, phoneValidator()]),
+    url: new FormControl('', [urlValidator()]),
   });
 
   private profileService = inject(ProfileService);
@@ -42,6 +44,8 @@ export class ProfileComponent implements OnInit {
   }
 
   public saveChanges(): void {
+    this.setFormAsDirty(this.profileForm);
+    if (!this.profileForm.valid) return;
     const formData: Profile = {
       first_name: this.profileForm.controls.first_name.value,
       last_name: this.profileForm.controls.last_name.value,
@@ -86,6 +90,12 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  private setFormAsDirty(form: FormGroup): void {
+    Object.keys(form.controls).forEach(key => {
+      form.controls[key].markAsDirty();
+    })
+  }
+
   private setPhonePrefixOnInputChange(): void {
     this.profileForm.controls.phone_number
       .valueChanges
@@ -98,5 +108,7 @@ export class ProfileComponent implements OnInit {
         this.profileForm.controls.phone_number.patchValue(modifiedValue, { emitEvent: false });
       });
   };
+
+
 
 }

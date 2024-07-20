@@ -3,15 +3,16 @@
   <div [formGroup]="profileForm" class="profile__data profile-data">
     <div class="profile-data__first-name">
       <p-floatLabel>
-        <input
-          id="first-name"
-          pInputText
-          formControlName="first_name"
-          maxlength="255"
-          required
-        >
-        <label for="first-name">Имя</label>
+          <input
+            id="first-name"
+            pInputText
+            formControlName="first_name"
+            maxlength="255"
+            required
+          >
+          <label for="first-name">Имя</label>
       </p-floatLabel>
+      <div class="error-msg" *ngIf="profileForm.controls.first_name.errors?.['required'] ?? false">Необходимо ввести значение</div>
     </div>
     <div class="profile-data__last-name">
       <p-floatLabel>
@@ -24,6 +25,7 @@
         >
         <label for="last-name">Фамилия</label>
       </p-floatLabel>
+      <div class="error-msg" *ngIf="profileForm.controls.last_name.errors?.['required'] ?? false">Необходимо ввести значение</div>
     </div>
     <div class="profile-data__email">
       <p-floatLabel>
@@ -35,6 +37,7 @@
         >
         <label for="email">Email</label>
       </p-floatLabel>
+      <div class="error-msg" *ngIf="profileForm.controls.email.errors?.['email'] ?? false">Введите корректное значение email</div>
     </div>
     <div class="profile-data__phone-number">
       <p-floatLabel>
@@ -47,6 +50,7 @@
         >
         <label for="phone-number">Номер телефона</label>
       </p-floatLabel>
+      <div class="error-msg" *ngIf="profileForm.controls.phone_number.errors?.['required'] ?? false">Необходимо ввести значение</div>
     </div>
     <div class="profile-data__url">
       <p-floatLabel>
@@ -54,11 +58,11 @@
           id="url"
           pInputText
           formControlName="url"
-          readonly
           type="email"
         >
         <label for="url">Адрес сайта</label>
       </p-floatLabel>
+      <div class="error-msg" *ngIf="profileForm.controls.url.errors?.['invalidUrl'] ?? false">Введите корректное значение адреса сайта</div>
     </div>
   </div>
   <div class="profile__submit">
