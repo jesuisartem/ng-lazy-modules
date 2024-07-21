@@ -28,6 +28,7 @@ export class MapComponent implements OnInit {
     this.map = this.mapService.createMap();
   }
 
+  // singleclick работает медленнее из-за проверки ивента на 'click' || 'singleclick'
   private getMapClick(): any {
     const clickEvent$ = fromEventPattern<MapBrowserEvent<MouseEvent>>((handler) => this.map.on('singleclick', handler));
     clickEvent$
