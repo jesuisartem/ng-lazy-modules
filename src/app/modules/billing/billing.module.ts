@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BillingComponent } from './components/billing/billing.component';
 import {BillingRoutingModule} from "./billing-routing.module";
 import { MapComponent } from './components/map/map.component';
+import {Button} from "primeng/button";
 
 
 
@@ -11,9 +12,10 @@ import { MapComponent } from './components/map/map.component';
     BillingComponent,
     MapComponent,
   ],
-  imports: [
-    BillingRoutingModule,
-    CommonModule
-  ]
+    imports: [
+        BillingRoutingModule,
+        CommonModule,
+        Button
+    ]
 })
 export class BillingModule { }

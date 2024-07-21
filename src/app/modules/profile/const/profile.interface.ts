@@ -6,6 +6,7 @@ interface Profile {
   email: string;
   phone_number: string;
   url?: string;
+  location?: string;
 }
 
 interface ProfileFormModel {

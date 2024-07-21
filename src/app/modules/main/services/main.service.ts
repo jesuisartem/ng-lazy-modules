@@ -29,11 +29,16 @@ export class MainService {
   }
 
   public setSelectedProfile(profile: Profile | null): void {
+    sessionStorage.setItem('profile', JSON.stringify(profile));
     this._selectedProfile$.next(profile);
   }
 
   public removeProfileData(): void {
-    this.setSelectedProfile(null);
     sessionStorage.removeItem('profile');
+    this.setSelectedProfile(null);
+  }
+
+  public getSelectedProfile(): Profile | null {
+    return this._selectedProfile$.getValue();
   }
 }

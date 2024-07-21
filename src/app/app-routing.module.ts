@@ -12,7 +12,7 @@ const routes: Routes = [
       { path: 'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) },
       { path: 'inventory', loadChildren: () => import('./modules/inventory/inventory.module').then(m => m.InventoryModule) },
       { path: 'reports', loadChildren: () => import('./modules/reports/reports.module').then(m => m.ReportsModule) },
-      { path: 'billing', loadChildren: () => import('./modules/billing/billing.module').then(m => m.BillingModule) },
+      { path: 'map', loadChildren: () => import('./modules/billing/billing.module').then(m => m.BillingModule) },
       { path: 'profile', loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfileModule) },
     ]
   },

@@ -44,4 +44,8 @@ export class MapService {
   public setSelectedFeature(feature: Feature): void {
     this._selectedFeature$.next(feature);
   }
+
+  public getSelectedFeature(): Feature | null {
+    return this._selectedFeature$.getValue();
+  }
 }

@@ -40,8 +40,8 @@ export class MainComponent {
         url: PageURLS.Reports,
       },
       {
-        label: 'Billing',
-        url: PageURLS.Billing,
+        label: 'Map',
+        url: PageURLS.Map,
       },
       {
         label: 'Profile',
@@ -65,6 +65,5 @@ export class MainComponent {
   private setUserProfile(): void {
     const profile = getRandomProfile();
     this.mainService.setSelectedProfile(profile);
-    sessionStorage.setItem('profile', JSON.stringify(profile));
   }
 }

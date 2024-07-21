@@ -2,7 +2,7 @@ enum PageURLS {
   Home = 'home',
   Inventory = 'inventory',
   Reports = 'reports',
-  Billing = 'billing',
+  Map = 'map',
   Profile = 'profile',
 }
 
