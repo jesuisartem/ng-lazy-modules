@@ -1,30 +1,44 @@
-import {Component, DestroyRef, inject, OnInit} from '@angular/core';
+import {AfterViewInit, Component, DestroyRef, inject, OnInit} from '@angular/core';
 import Map from 'ol/Map';
 import {MapService} from "../../services/map.service";
-import {fromEventPattern} from "rxjs";
+import {fromEventPattern, Subject} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {Feature, MapBrowserEvent, MapEvent} from "ol";
 import {Geometry} from "ol/geom";
 import {SELECTED_FEATURE_STYLE} from "../../const/feature-style";
 import {Select} from "ol/interaction";
+import {LoadingService} from "../../../loading/loading.service";
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, AfterViewInit {
   public map!: Map
 
   private mapService = inject(MapService);
   private destroyRef = inject(DestroyRef);
+  private loadingService = inject(LoadingService);
 
   public ngOnInit(): void {
     this.initMap();
     this.getMapClick();
   }
 
+  public ngAfterViewInit() {
+    const renderEvent$ = fromEventPattern<MapBrowserEvent<MouseEvent>>((handler) => this.map.once('postrender', handler));
+    renderEvent$
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe(() => {
+        this.loadingService.setLoadingStatus(false);
+      })
+  }
+
   private initMap(): void {
+    this.loadingService.setLoadingStatus(true);
     this.map = this.mapService.createMap();
   }
 
