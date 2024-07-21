@@ -5,12 +5,14 @@ import {OSM} from "ol/source";
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import {GeoJSON} from "ol/format";
-import {View} from "ol";
+import {Feature, View} from "ol";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MapService {
+  private _selectedFeature$ = new BehaviorSubject<Feature | null>(null);
 
   constructor() { }
 
@@ -33,5 +35,13 @@ export class MapService {
         zoom: 2,maxZoom: 18,
       }),
     });
+  }
+
+  public get selectedFeature$(): Observable<Feature | null> {
+    return this._selectedFeature$.asObservable();
+  }
+
+  public setSelectedFeature(feature: Feature): void {
+    this._selectedFeature$.next(feature);
   }
 }
