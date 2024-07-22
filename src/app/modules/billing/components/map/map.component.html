@@ -1,6 +1,6 @@
 <div class="map-container">
   <div id="map" class="map"><div #popup class="popup"></div></div>
-  <div class="map__submit-location">
+  <div *ngIf="mapService.selectedFeature$ | async" class="map__submit-location">
     <p-button label="Выбрать" (onClick)="setLocation()"></p-button>
   </div>
 </div>

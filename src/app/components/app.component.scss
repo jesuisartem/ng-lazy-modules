@@ -5,6 +5,14 @@
   height: 100%;
 }
 
+.app-loading-overlay,
+.app-header {
+  flex: 0 0 auto;
+}
+
 .app-router-outlet {
   height: 100%;
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
 }

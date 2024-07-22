@@ -21,7 +21,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   @ViewChild('popup') popupOverlay?: ElementRef<HTMLDivElement>;
   public map!: Map
 
-  private mapService = inject(MapService);
+  public mapService = inject(MapService);
   private destroyRef = inject(DestroyRef);
   private loadingService = inject(LoadingService);
   private mainService = inject(MainService);
